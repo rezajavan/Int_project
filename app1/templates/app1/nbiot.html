@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="UTF-8">
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NB-IoT Frame Structure </title>
+<script type="text/javascript">
+function np0(){
+    var x=document.getElementById("tx1")
+    x.hidden = true
+    var x=document.getElementById("tx2")
+    x.hidden = true
+    var x=document.getElementById("tx3")
+    x.hidden = true
+    var x=document.getElementById("tx0")
+    x.selected = true
+
+}
+function np2(){
+    var x=document.getElementById("tx1")
+    x.hidden = false
+    var x=document.getElementById("tx2")
+    x.hidden = true
+    var x=document.getElementById("tx3")
+    x.hidden = true
+    var x=document.getElementById("tx0")
+    x.selected = true
+
+}
+function np4(){
+    var x=document.getElementById("tx1")
+    x.hidden = false
+    var x=document.getElementById("tx2")
+    x.hidden = false
+    var x=document.getElementById("tx3")
+    x.hidden = false
+    var x=document.getElementById("tx0")
+    x.selected = true
+
+}
+function disinband(){
+    var x=document.getElementById("lteport")
+    x.disabled = true
+    var x=document.getElementById("tx")
+    x.disabled = true
+    var x=document.getElementById("lteid")
+    x.disabled = true
+
+
+}
+function eninband(){
+    var x=document.getElementById("lteport")
+    x.disabled = false
+    var x=document.getElementById("tx")
+    x.disabled = false
+    var x=document.getElementById("lteid")
+    x.disabled = false
+
+
+}
+function warnn(){
+  alert("error  error error")
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <center>
+      <div style=" background-color: wheat" >
+
+            <h3 style="color: darkslategrey ">NB-IoT Frame Structure </h3>
+
+
+
+    <div style="background-color: lightslategrey ; color: black;">
+<form method="POST" >
+  {% csrf_token %}
+
+  <label>Mode</label>
+  <select name="mode">
+      <option id = "Guardband" value="1" onclick="disinband()" >Guardband/Standalone</option>
+    <option  id = "inband" value="0" onclick="eninband()">inband</option>
+
+  </select>
+  <br>
+  <hr>
+
+  <label style="color: black">LTE Port number : </label>
+  <select id="lteport" name="lteport" disabled>
+
+
+
+  <option id = "l1" value="0" onclick="np0()">0</option>
+  <option id = "l2" value="2" onclick="np2()">2</option>
+      <option id = "l4" value="4"  onclick="np4()" selected>4</option>
+
+</select>
+<label >Tx antenna port : </label>
+<select id="tx" name="tx" disabled>
+  <option id="tx0" value="0">0</option>
+  <option id="tx1" value="1">1</option>
+  <option id="tx2" value="2">2</option>
+  <option id="tx3" value="3">3</option>
+
+
+</select>
+<label>LTE Cell ID : </label>
+<select id="lteid" onclick="warnn()" disabled>
+  <option onclick="warnn()">0</option>
+</select>
+<br>
+<hr>
+<label >NB-Iot Cell ID : </label>
+<input type="number" max="503" min="0" name="nbiotid" value={{nbi}} >
+<label>NB-Iot port number : </label>
+<select name="nbiotport" >
+<option id = "0" value="0" >0</option>
+<option id = "1" value="1">1</option>
+<option id = "4" value="4">0,1</option>
+
+</select>
+<br>
+    <hr>
+        <button  type="submit"  >Show</button >
+
+    <br>
+<hr>
+
+</form>
+
+    </div>
+</div>
+
+</center>
+
+  <center>
+    <h4>Odd Radio Frame</h4>
+    <img src= {{addresodd}} alt="odd frame">
+      <img src= ../../static/app1/at.png alt="odd frame">
+    <h4>Even Radio Frame</h4>
+    <img src= {{addreseven}} alt="even frame">
+      <img src= ../../static/app1/at.png alt="even frame">
+        </center>
+
+</body>
+
+<script type="text/javascript">
+
+var y = "{{mod}}";
+document.getElementById(y).selected = true;
+if(y == "inband"){
+  eninband()
+
+}
+
+var y = "{{ltp}}";
+document.getElementById(y).selected = true;
+var y = "{{tn}}";
+document.getElementById(y).selected = true;
+
+</script>
+
+<script type="text/javascript">
+
+
+
+ var x=document.getElementById("{{nbp}}");
+ x.selected = true;
+
+</script>
+
+
+</html>
+
+
+

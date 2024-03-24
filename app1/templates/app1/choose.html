@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faraz</title>
+     <style type = "text/css">
+  body {
+
+
+  background-image: url(../../static/app1/backgr.jpg);
+  background-size:100%;
+  background-repeat:no-repeat;
+
+  }
+
+
+
+ </style>
+</head>
+<body>
+
+
+
+
+
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+        <select>
+            <option>Scatter plot</option>
+        </select>
+        <button type="submit" name="Scatter plot">Show</button>
+            </fieldset>
+        <br>
+
+
+         <fieldset>
+        <select>
+            <option>Domain Time</option>
+
+        </select>
+        <button type="submit" name="Domain Time">Show</button>
+             </fieldset>
+        <br>
+
+
+        <fieldset>
+        <select>
+            <option>Spectrogram</option>
+        </select>
+        <label style="color: black">Window : </label>
+        <select name="window-sp">
+
+            <option value="boxcar" selected>boxcar</option>
+            <option value="triang">triang</option>
+            <option value="blackman">blackman</option>
+            <option value="hamming">hamming</option>
+            <option value="hann">hann</option>
+            <option value="bartlett">bartlett</option>
+            <option value="flattop">flattop</option>
+            <option value="parzen">parzen</option>
+            <option value="bohman">bohman</option>
+            <option value="blackmanharris">blackmanharris</option>
+            <option value="nuttall">nuttall</option>
+            <option value="barthann">barthann</option>
+
+
+
+        </select>
+        <button name="Spectrogram" type="submit">Show</button>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+        <select>
+            <option>welch</option>
+        </select>
+        <label style="color: black">Window : </label>
+        <select name="window-welch">
+
+            <option value="boxcar" selected>boxcar</option>
+            <option value="triang">triang</option>
+            <option value="blackman">blackman</option>
+            <option value="hamming">hamming</option>
+            <option value="hann">hann</option>
+            <option value="bartlett">bartlett</option>
+            <option value="flattop">flattop</option>
+            <option value="parzen">parzen</option>
+            <option value="bohman">bohman</option>
+            <option value="blackmanharris">blackmanharris</option>
+            <option value="nuttall">nuttall</option>
+            <option value="barthann">barthann</option>
+
+
+
+        </select>
+        <button name="welch" type="submit">Show</button>
+        </fieldset>
+
+
+
+
+
+    </form>
+
+
+
+    <br>
+<br>
+
+
+
+
+</body>
+</html>

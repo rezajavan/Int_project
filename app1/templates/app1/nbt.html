@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="UTF-8">
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NB-IoT Frame Structure </title>
+<script type="text/javascript">
+function np0(){
+    var x=document.getElementById("tx1")
+    x.hidden = true
+    var x=document.getElementById("tx2")
+    x.hidden = true
+    var x=document.getElementById("tx3")
+    x.hidden = true
+    var x=document.getElementById("tx0")
+    x.selected = true
+    sh();
+
+}
+function np2(){
+    var x=document.getElementById("tx1")
+    x.hidden = false
+    var x=document.getElementById("tx2")
+    x.hidden = true
+    var x=document.getElementById("tx3")
+    x.hidden = true
+    var x=document.getElementById("tx0")
+    x.selected = true
+    sh();
+
+}
+function np4(){
+    var x=document.getElementById("tx1")
+    x.hidden = false
+    var x=document.getElementById("tx2")
+    x.hidden = false
+    var x=document.getElementById("tx3")
+    x.hidden = false
+    var x=document.getElementById("tx0")
+    x.selected = true
+    sh();
+
+}
+function disinband(){
+    var x=document.getElementById("lteport");
+    x.disabled = true;
+    var x=document.getElementById("tx");
+    x.disabled = true;
+    var x=document.getElementById("lteid");
+    x.disabled = true;
+    sh()  ;
+
+
+}
+function eninband(){
+    var x=document.getElementById("lteport")
+    x.disabled = false
+    var x=document.getElementById("tx")
+    x.disabled = false
+    var x=document.getElementById("lteid")
+    x.disabled = false
+    sh();
+
+
+}
+function warnn(){
+  alert("only LTE Cell ID 0")
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <center>
+      <div style=" background-color: wheat" >
+
+            <h3 style="color: darkslategrey ">NB-IoT Frame Structure </h3>
+
+
+
+    <div style="background-color: lightslategrey ; color: black;">
+<form method="POST" >
+  {% csrf_token %}
+
+  <label>Mode</label>
+  <select id="mode" name="mode">
+      <option id = "Guardband" value="1" onclick="disinband()" >Guardband/Standalone</option>
+    <option  id = "inband" value="0" onclick="eninband()">inband</option>
+
+  </select>
+  <br>
+  <hr>
+
+  <label style="color: black">LTE Port number : </label>
+  <select id="lteport" name="lteport" disabled>
+
+
+
+  <option id = "l1" value="0" onclick="np0()">0</option>
+  <option id = "l2" value="2" onclick="np2()">2</option>
+      <option id = "l4" value="4"  onclick="np4()" selected>4</option>
+
+</select>
+<label >Tx antenna port : </label>
+<select id="tx" name="tx" disabled>
+  <option id="tx0" value="0" onclick="sh()">0</option>
+  <option id="tx1" value="1" onclick="sh()">1</option>
+  <option id="tx2" value="2" onclick="sh()">2</option>
+  <option id="tx3" value="3"onclick="sh()">3</option>
+
+
+</select>
+<label>LTE Cell ID : </label>
+<select id="lteid" onclick="warnn()"  disabled>
+  <option onclick="warnn()">0</option>
+</select>
+<br>
+<hr>
+<label >NB-Iot Cell ID : </label>
+<input id="nbiotid" type="number" max="503" min="0" name="nbiotid"  value= 0 onclick="sh()" onmousedown="sh()" onmouseup="sh()" onkeypress="sh()" onkeyup="sh()" onkeydown="sh()">
+<label>NB-Iot port number : </label>
+<select name="nbiotport" id="nbiotport">
+<option id = "0" value="0" onclick="sh()">0</option>
+<option id = "1" value="1" onclick="sh()">1</option>
+<option id = "4" value="4" onclick="sh()"> 0,1</option>
+
+</select>
+
+
+</form>
+
+    </div>
+</div>
+
+
+</center>
+
+  <center>
+    <h4>Odd Radio Frame</h4>
+    <img id = "im1" src= "../../static/app1/pic2110.jpg"  alt="odd frame">
+      <img src= ../../static/app1/at.png alt="odd frame">
+    <h4>Even Radio Frame</h4>
+    <img id="im2" src= "../../static/app1/pic2120.jpg" alt="even frame">
+      <img  src= ../../static/app1/at.png alt="even frame">
+        </center>
+        <script>
+
+          function sh(){
+            nbi = document.getElementById("nbiotid").value;
+            nbport=document.getElementById("nbiotport").value;
+            var nbit = parseInt(nbi,10);
+            
+            if (nbit%3 == 0){
+              nbidt = '1';
+            }
+            if(nbit%3 == 1){
+              nbidt = '2';
+            } 
+            if(nbit%3 == 2){
+              nbidt = '3';
+
+            }
+            mod = document.getElementById("mode").value;
+            if (mod == '1'){
+              document.getElementById("im1").src = "../../static/app1/pic" + "2" +  nbidt + "1" + nbport + ".jpg";
+            document.getElementById("im2").src = "../../static/app1/pic" + "2" + nbidt + "2" + nbport+ ".jpg";
+
+            }
+            if(mod == '0'){
+
+              txn =  document.getElementById("tx").value;
+              ltep = document.getElementById("lteport").value;
+              if (ltep == '0'){
+                ltep = '1';
+              }
+
+
+
+              document.getElementById("im1").src = "../../static/app1/pic" + ltep + txn + "0" + "2" + nbidt + "1" + nbport + ".jpg";
+              document.getElementById("im2").src = "../../static/app1/pic" +  ltep + txn + "0" + "2" + nbidt + "2" + nbport + ".jpg";
+
+            }
+
+          }
+        
+        </script>
+
+</body>
+
+
+
+
+
+
+
+
+</script>
+</html>
+
+
+
